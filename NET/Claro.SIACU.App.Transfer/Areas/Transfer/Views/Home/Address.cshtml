@@ -1,0 +1,320 @@
+﻿<div id="divAddress">
+    <div class="customer-data-title box">
+        <div class="customer-data-title-items customer-data-title-icon" style="width: 5%; padding: 0">
+            <span class="scheduling-icon"></span>
+        </div>
+        <div class="customer-data-title-items customer-data-title-label" style="padding-top: 10px; width: 60%">
+            <span>DIRECCION DE INSTALACIÓN</span>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-3">
+
+                </div>
+                <div class="col-md-3">
+                    <div class="btn-Top-right">
+                        <button type="button" id="btnValidateCoverage" class="btn btn-red-long-thick ">
+                            <span class="info_cobertura-icon"></span>Ver Mi Cobertura
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-green-long-thick" id="btnValBuilding" disabled>
+                        <span class="ico_cobertura_off " style=" transform: scale(1.5)"></span>Agregar Edificio
+                    </button>
+                </div>
+                <div class="col-md-3">
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="col-md-12" style="margin-top:15px" style="word-wrap: break-word;">
+            <div class="row">
+                <div class="col-md-8" style="word-wrap: break-word;">
+                    <label class="label-cp">Pre visualización de Dirección Nueva:</label>
+                    <br />
+                    <div><span id="spnPreAddressNew" class="text-Address-det"></span></div>
+
+                </div>
+                <div class="col-md-4">
+                    <label class="label-cp">Previzualización de Referencia:</label>
+                    <br />
+                    <div style="word-wrap: break-word;"><span id="spnPreReference" class="text-Address-det"></span></div>
+
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="col-md-12">
+            <div class="row">
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="company" class="label-cp">Departamento(*):</label>
+                        <select class="form-control input-sm ddlNoteDepartment" id="ddlNoteDepartment"></select>
+                        <p id="ErrorMessageddlNoteDepartment" class="alert-danger alert-message"></p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="company" class="label-cp">Provincia (*):</label>
+                        <select class="form-control input-sm" id="ddlNoteProvince"></select>
+                        <p id="ErrorMessageddlNoteProvince" class="alert-danger alert-message"></p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="company" class="label-cp">Distrito (*):</label>
+                        <select class="form-control input-sm" id="ddlNoteDistrict"></select>
+                        <p id="ErrorMessageddlNoteDistrict" class="alert-danger alert-message"></p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="company" class="label-cp">Centro Poblado (*):</label>
+                        <select class="form-control input-sm" id="ddlNoteCenterPopulated"></select>
+                        <p id="ErrorMessageddlNoteCenterPopulated" class="alert-danger alert-message"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="company" class="label-cp">Urb./Residencial (*):</label>
+                        <select class="form-control input-sm" id="ddlNoteUrbanization"></select>
+                        <p id="ErrorMessageddlNoteUrbanization" class="alert-danger alert-message"></p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="company" class="label-cp">Nombre Urb./Residencial (*):</label>
+                        <input type="text" class="form-control input-sm" id="txtNoteUrbanization" aria-label="...">
+                        <p id="ErrorMessagetxtNoteUrbanization" class="alert-danger alert-message"></p>
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="company" class="label-cp">Zona/Etapa:</label>
+                        <select class="form-control input-sm" id="ddlNoteZote"></select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+
+                        <label for="company" class="label-cp">Nombre Zona/Etapa:</label>
+                        <input type="text" class="form-control input-sm" id="txtNoteNameZote" aria-label="...">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="row">
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="company" class="label-cp">Código Postal:</label>
+                        <input type="text" class="form-control input-sm" id="txtNoteCodePostal" aria-label="...">
+                    </div>
+                </div>
+                <div class="col-md-3"  style="display: none">
+                        <div class="form-group">
+                            <label for="company" class="label-cp"> Código de Edificio: </label>
+                            <input type="text" class="form-control input-sm" id="txtCodBuilding" aria-label="..." disabled>
+                        </div>
+                    </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="company" class="label-cp">Código de Plano (*): </label>
+                        <input type="text" class="form-control input-sm" id="txtCodPlane" aria-label="..." disabled >
+                        <p id="ErrorMessagetxtCodPlane" class="alert-danger alert-message"></p>
+                    </div>
+                </div>
+                <div class="col-md-3" style="padding-top:12px">
+                    <div class="form-group">
+
+                        <button class="btn btn-golden-long-thick" data-toggle="modal" href="#" id="btnPlane" disabled>
+                            <span class="info_mapa-icon">
+                            </span>
+                            Validar Plano
+                        </button>
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group text-Address-alert" style="padding:20px 0px 0px 00px">
+                        <label for="company" id="txtConDir" class="label-cp text-Address-alert">( 0 / 250 Caracteres)</label>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="company" class="label-cp">Calle/Av/Jr/Psje. (*):</label>
+                        <select class="form-control input-sm ddlStreet" id="ddlStreet"></select>
+                        <p id="ErrorMessageddlStreet" class="alert-danger alert-message"></p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+
+                        <label for="company" class="label-cp">Nombre Calle/Av/Jr/Psje. (*):</label>
+                        <input type="text" class="form-control input-sm" id="txtNameStreet" aria-label="...">
+                        <p id="ErrorMessagetxtNameStreet" class="alert-danger alert-message"></p>
+                    </div>
+
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="company" class="label-cp">Nro. (*):</label>
+                        <label>
+                            <input type="text" class="form-control input-sm" id="txtNumber" aria-label="...">
+                        </label>
+                        <p id="ErrorMessagetxtNumber" class="alert-danger alert-message"></p>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="form-group" style="align-content:center">
+                        <label for="company" class="text-Address-import">
+                            S/N
+                        </label>
+                        <label>
+                            <input class="style-checkbox input-sm chkSN" type="checkbox" id="chkSN" value="true">
+                            <label for="chkSN" class="inline-label "></label>
+                        </label>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="company" class="label-cp">Mz/Bloque/Edif.: </label>
+                        <select class="form-control input-sm" id="ddlTipMzBloEdi"></select>
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="company" class="label-cp">Nro. Mz/Bloq/Edif.: </label>
+                        <label>
+                            <input type="text" class="form-control input-sm" id="txtNumberBlock" aria-label="...">
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="company" class="label-cp">Lote:</label>
+                        <input type="text" class="form-control input-sm" id="txtLot" aria-label="...">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="company" class="label-cp">Tipo Dpto./Int.: </label>
+                        <select class="form-control input-sm" id="ddlDepartInter"></select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="company" class="label-cp">Número Dpto./Int.:</label>
+                        <label>
+                            <input type="text" class="form-control input-sm" id="txtNumberDepartInter" aria-label="...">
+                        </label>
+                        @*<div class="form-group text-Address-alert" style="padding:20px 0px 0px 00px">
+                                <label for="company" id="txtConDir" class="label-cp text-Address-alert">( 0 / 250 Caracteres)</label>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="form-group">
+                        <label for="company" class="label-cp">Referencia:</label>
+                        <input type="text" class="form-control input-sm" id="txtNoteReference" aria-label="...">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group text-Address-alert" style="padding:20px 0px 0px 00px">
+                        <label for="company" id="txtConNotDir" class="label-cp text-Address-alert">( 0 / 250 Caracteres)</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="customer-data-title box" style="padding:0px">
+        <div class="customer-data-title-items customer-data-title-icon" style="width: 5%; padding: 0">
+            <span class="additional_info-icon"></span>
+        </div>
+        <div class="customer-data-title-items customer-data-title-label" style="padding-top: 10px; width: 60%">
+            <span>DIRECCIÓN DE FACTURACIÓN</span>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="col-md-12">
+
+            <div class="label-cp">
+                <input class="style-checkbox" type="checkbox" id="chkUseChangeBilling" value="true" style="margin:0px" checked>
+                <label for="chkUseChangeBilling" class="label-cp">Utilizar Datos para Cambio de Dirección de Facturación</label>
+            </div>
+
+        </div>
+        <div class="col-md-12">
+            <div class="row">
+
+                @*<div id="idtruelnkcob" class="col-md-2" style="color:#FFFFFF">
+                        <br />
+                        <span class="ico_face_si_off">
+                        </span>
+                        Si
+                    </div>
+                    <div id="idfalselnkcob" class="col-md-2" style="color:#FFFFFF">
+                        <br />
+                        <span class="ico_face_no_off">
+                        </span>
+                        No
+                    </div>*@
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="row">
+
+
+                @*<div id="idtruelnkValBuilding" class="col-md-2" style="color:#FFFFFF">
+                        <br />
+                        <span class="ico_face_si_off">
+                        </span>
+                        Si
+                    </div>
+                    <div id="idfalselnkValBuilding" class="col-md-2" style="color:#FFFFFF">
+                        <br />
+                        <span class="ico_face_no_off">
+                        </span>
+                        No
+                    </div>*@
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+@Scripts.Render("~/bundles/Content/Lib/BloqueoF12")

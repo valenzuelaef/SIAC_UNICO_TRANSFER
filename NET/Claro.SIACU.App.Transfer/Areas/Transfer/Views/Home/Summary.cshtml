@@ -1,0 +1,302 @@
+﻿
+@{
+    Layout = null;
+}
+
+    <div id="divSummary" style="padding:10px; border: 1px solid;border-color:#C4C4C4;">
+
+
+    <div class="customer-data-title box title-box">
+        <div class="customer-data-title-items customer-data-title-icon" style="width: 6%; padding: 0">
+            <span class="info_validar-plano-icon"></span>
+        </div>
+        <div class="customer-data-title-items customer-data-title-label" style="padding-top: 10px; width: 60%">
+            <span class="package">Nueva Dirección de Destino</span>
+        </div>
+    </div>
+
+    <div class="panel-body" style="padding-bottom:00px ; word-wrap: break-word">
+        <div class="col-md-12" style="word-wrap: break-word;">
+            <div class="row">
+                <div class="col-md-8" style="word-wrap: break-word;">
+                    <label class="label-cp">Pre visualización de Dirección Nueva:</label>
+                    <br />
+                    <span id="SmmryspnPreAddressNew" class="text-Address-det"></span>
+                </div>
+                <div class="col-md-4" style="word-wrap: break-word;">
+                    <label class="label-cp">Previzualización de Referencia:</label>
+                    <br />
+                    <span id="SmmryspnPreReference" class="text-Address-det"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" style="word-wrap: break-word;">
+   
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="company" class="text-normal">Calle/Av/Jr/Psje. (*):</label><br />
+                            <label for="company" class="text-Address-det" id="SmmryddlStreet">-</label>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="form-group">
+                            <label for="company" class="text-normal">Nombre de Calle/Av/Jr/Psje. (*):</label><br />
+                            <label for="company" class="text-Address-det" id="SmmrytxtNameStreet"> -</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="company" class="text-normal">Número (*):</label><br />
+                            <label for="company" class="text-Address-det" id="SmmrytxtNumber"> -</label>
+                        </div>
+                    </div>
+                    @*<div class="col-md-2">
+                            <div class="form-group">
+                                <label for="company" class="text-normal">S/N</label>
+                                <label for="company" class="text-Address-det"></label>
+                            </div>
+                        </div>*@
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="company" class="text-normal">Mz/Bloque/Edif.:</label><br />
+                            <label for="company" class="text-Address-det" id="SmmryddlTipMzBloEdi">-</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="company" class="text-normal">Nro. Mz/Bloque/Edif.</label><br />
+                            <label for="company" class="text-Address-det" id="SmmrytxtNumberBlock">-</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="company" class="text-normal">Lote.:</label><br />
+                            <label for="company" class="text-Address-det" id="SmmrytxtLot">-</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="company" class="text-normal">Dpto./Int.:</label><br />
+                            <label for="company" class="text-Address-det" id="SmmryddlDepartInter">-</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="company" class="text-normal">Nro. Dpto./Int.:</label><br />
+                            <label for="company" class="text-Address-det" id="SmmrytxtNumberDepartInter">-</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group" >
+                            <label for="company" class="text-normal">Referencia</label><br />
+                            <label for="company" class="text-Address-det" id="SmmrytxtNoteReference">-</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="company" class="text-normal"></label>
+                            <label for="company" class="text-Address-det"> </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="company" class="text-normal">Urb./Residencial. (*):</label><br />
+                            <label for="company" class="text-Address-det" id="SmmryddlNoteUrbanization">-</label>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="company" class="text-normal">Nombre Urb./Residencial. (*):</label><br />
+                            <label for="company" class="text-Address-det" id="SmmrytxtNoteUrbanization">-</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="company" class="text-normal">Zona/Etapa:</label><br />
+                            <label for="company" class="text-Address-det" id="SmmryddlNoteZote">-</label>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="company" class="text-normal">Nombre Zona/Etapa:</label><br />
+                            <label for="company" class="text-Address-det" id="SmmrytxtNoteNameZote">-</label>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="company" class="text-normal">Departamento (*):</label><br />
+                            <label for="company" class="text-Address-det" id="SmmryddlNoteDepartment">-</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="company" class="text-normal">Provincia(*):</label><br />
+                            <label for="company" class="text-Address-det" id="SmmryddlNoteProvince">-</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="company" class="text-normal">Distrito (*):</label><br />
+                            <label for="company" class="text-Address-det" id="SmmryddlNoteDistrict">-</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="company" class="text-normal">Código Postal:</label><br />
+                            <label for="company" class="text-Address-det" id="SmmrytxtNoteCodePostal">-</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="company" class="text-normal">Centro Poblado: (*):</label><br />
+                            <label for="company" class="text-Address-det" id="SmmryddlNoteCenterPopulated">-</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="company" class="text-normal">Código de Plano (*):</label><br />
+                            <label for="company" class="text-Address-det" id="SmmrytxtCodPlane">-</label>
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="company" class="text-normal">Código de Edificio:</label><br />
+                            <label for="company" class="text-Address-det" id="SmmrytxtCodBuilding">-</label>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="company" class="text-normal">Utilizar datos para cambio de dirección de facturación: </label>
+                            <label for="company" class="text-Address-det" id="SmmrychkUseChangeBilling">-</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="company" class="text-normal"></label>
+                            <label for="company" class="text-Address-det"></label>
+                        </div>
+                    </div>
+
+                </div>
+            
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="company" class="text-normal">Fecha de Visita</label><br />
+                            <label for="company" class="text-Address-det" id="SmmrytxtCalendar">-</label><br />
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="company" class="text-normal"> Horario:</label><br />
+                            <label for="company" class="text-Address-det" id="SmmryddlTimeZone">-</label>
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="company" class="text-normal">Fidelizar :</label><br />
+                            <label for="company" class="text-Address-det" id="SmmrychkLoyalty">-</label>
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="company" class="text-normal"> Costo de Instalación(S/ Inc. IGV) :</label><br />
+                            <label for="company" class="text-Address-det" id="SmmrytxtChargeAmount">-</label>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="company" class="text-normal">¿Enviar por e-mail?<br/></label>
+                            <label for="company" class="text-Address-det" id="SmmrytxtSendMail">-</label>
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="company" class="text-normal"> Teléfono de Referencia. (opional)</label>
+                            <label for="company" class="text-Address-det" id="SmmrytxtReferencePhone">-</label>
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="company" class="text-normal"></label>
+                            <label for="company" class="text-Address-det"></label>
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="company" class="text-normal"></label>
+                            <label for="company" class="text-Address-det"></label>
+
+                        </div>
+                    </div>
+                </div>
+ 
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="company" class="text-normal">Punto de Atención:</label><br />
+                            <label for="company" class="text-Address-det" id="SmmryddlCenterofAttention">-</label>
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="company" class="text-normal"> </label>
+                            <label for="company" class="text-Address-det"></label>
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="company" class="text-normal"></label>
+                            <label for="company" class="text-Address-det"></label>
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="company" class="text-normal"></label>
+                            <label for="company" class="text-Address-det"></label>
+
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+
+</div>
+@Scripts.Render("~/bundles/Content/Lib/BloqueoF12")

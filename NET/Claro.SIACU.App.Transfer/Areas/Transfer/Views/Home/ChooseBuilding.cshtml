@@ -1,0 +1,60 @@
+﻿
+@{
+    Layout = null;
+}
+
+<style type="text/css">
+    #tblBuilding_wrapper > div:nth-child(3) > div.col-xs-12.col-md-7 {
+        width: 98.33333333%;
+    }
+</style>
+
+    <div id="ChooseBuilding">
+        <div class="panel panel-group claro-panel-primary">
+            <div class="panel-body" style="height: 300px">
+
+                <div class="row">
+                    <div class="form-group">
+                        <label class="control-label col-sm-1" for="inputEmail">Mostrar: </label>
+                        <div class="col-sm-1">
+                            <select class="form-control-sm filter-box">
+                                <option>10</option>
+                                <option>20</option>
+                                <option>30</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2 text-left" style="padding-top: 7px">
+                            Registros por página
+                        </div>
+                        <div class="col-md-8">
+                            <div class="col-sm-7" style="padding: 0; float: right">
+                                <input type="text" class="form-control" id="#" maxlength="200" placeholder="¿Que estas buscando?">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    @*style="height: calc(50vh - 50px);"*@
+                    <div class="col-sm-12" >
+                        <div class="table-responsive">
+                            <table class="table table-striped" id="tblBuilding">
+                                <thead>
+                                    <tr>
+                                        <th>Selec.</th>
+                                        <th>Id Edificio</th>
+                                        <th>Descripcion</th>
+                                        <th>Distrito</th>
+                                        <th>Centro Poblado</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@Scripts.Render("~/bundles/Content/Lib/BloqueoF12")
+<script src="~/Areas/Transfer/Scripts/ChooseBuilding.js"></script>
