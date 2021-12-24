@@ -50,11 +50,13 @@
                         var Availability = data.strAvailability;
                         var jsonParameters = data.strParameters;// data.jsonParameters;
                         var node = data.strNode;
-                        var objparameters = jsonParameters;
-                        var regex = new RegExp("\'", "g");
-                        var strData = objparameters.replace(regex, '"');
+                        //var objparameters = jsonParameters;
+                        //var regex = new RegExp("\'", "g");
+                        //var strData = objparameters.replace(regex, '"');
+                        //Session = JSON.parse(strData);
 
-                        Session = JSON.parse(strData);
+                        var objparameters = JSON.stringify(jsonParameters);
+                        Session = JSON.parse(JSON.parse(objparameters));
 
                         $("#spnNode").text(node);
                         $("#spnCustomerNameTitle").text(Session.SessionParams.USERACCESS.login + " - " + Session.SessionParams.USERACCESS.fullName);

@@ -112,7 +112,8 @@
                 .then(function (res) {
                     debugger
                     var initialConfiguration = res[1].oInitialDataResponse.MessageResponse.Body;
-                    if (res[1].oDatosAdi.MessageResponse == null && initialConfiguration.CustomerInformation.CustomerList[0].ServiceStatus != 'Activo'){
+                    if (res[1].oDatosAdi.MessageResponse == null && initialConfiguration.CustomerInformation.CustomerList[0].ServiceStatus != 'Activo')
+                            {
                             alert("La linea no se encuentra activa", 'Alerta', function () {
                                 $.unblockUI();
                                 parent.window.close();
@@ -120,6 +121,7 @@
         
                             return false;
                         }
+
                     var AdditionalFixedData = res[1].oDatosAdi.MessageResponse.Body,
                         AuditRequest = res[1].oAuditRequest,
                         Configuraciones = res[1].oConfiguraciones,
