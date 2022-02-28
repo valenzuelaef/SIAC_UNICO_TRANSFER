@@ -19,7 +19,7 @@ namespace Claro.SIACU.App.Transfer.Areas.Transfer.Controllers
     public class HomeController : Controller
     {
         static DatosAdicionalesResponse oDatosAdi = new DatosAdicionalesResponse();
- 
+
         static List<Ubicaciones> listUbicaciones
             = new List<Ubicaciones>();
 
@@ -121,17 +121,17 @@ namespace Claro.SIACU.App.Transfer.Areas.Transfer.Controllers
             ///Carga para la informacion de lado derecho (Primer Wizard)
             if (/*idTransaccion == "3" &&*/ idProceso == "1")
             {
-                    listUbicaciones  = entidad.ubicaciones_obtenerUbicaciones.CodigoRespuesta == "0" ?
-                         entidad.ubicaciones_obtenerUbicaciones.listaUbicaciones.ToList() : null;
+                listUbicaciones = entidad.ubicaciones_obtenerUbicaciones.CodigoRespuesta == "0" ?
+                     entidad.ubicaciones_obtenerUbicaciones.listaUbicaciones.ToList() : null;
 
-                    listTipoInterior = entidad.tiposubicacion_obtenerTiposInterior.CodigoRespuesta == "0" ?
-                        entidad.tiposubicacion_obtenerTiposInterior.listaTipoInterior.ToList() : null;
+                listTipoInterior = entidad.tiposubicacion_obtenerTiposInterior.CodigoRespuesta == "0" ?
+                    entidad.tiposubicacion_obtenerTiposInterior.listaTipoInterior.ToList() : null;
 
                 listTipoVias = entidad.tiposubicacion_obtenerTiposVia.CodigoRespuesta == "0" ?
                     entidad.tiposubicacion_obtenerTiposVia.listaTipoVia.ToList() : null;
 
-                    listTipoUrbanizacion = entidad.tiposubicacion_obtenerTiposUrbanizacion.CodigoRespuesta == "0" ?
-                        entidad.tiposubicacion_obtenerTiposUrbanizacion.listaTipoUrbanizacion.ToList() : null;
+                listTipoUrbanizacion = entidad.tiposubicacion_obtenerTiposUrbanizacion.CodigoRespuesta == "0" ?
+                    entidad.tiposubicacion_obtenerTiposUrbanizacion.listaTipoUrbanizacion.ToList() : null;
             }
 
             ///Carga para la informacion de lado derecho CP, PLANOS, EDIFICIOS
@@ -183,14 +183,14 @@ namespace Claro.SIACU.App.Transfer.Areas.Transfer.Controllers
                 Header = new Models.DataPower.HeaderReq
                 {
                     HeaderRequest = new Models.DataPower.HeaderRequest
-                      {
+                    {
                         consumer = "TCRM",
                         country = "PERU",
                         dispositivo = "MOVIL",
                         language = "ES",
                         modulo = "OM",
                         msgType = "REQUEST",
-                          operation = "obtenerDatosInicialAdicionales",
+                        operation = "obtenerDatosInicialAdicionales",
                         pid = DateTime.Now.ToString("yyyyMMddHHmmssfff"),
                         system = "SIACU",
                         timestamp = DateTime.Now.ToString("o"),
@@ -201,17 +201,17 @@ namespace Claro.SIACU.App.Transfer.Areas.Transfer.Controllers
                 Body = new Models.DatosAdicionales.DatosAdicionalesBodyRequest
                 {
                     IdTransaccion = request.IdTransaccion,
-			        IdProceso = request.IdProceso,
+                    IdProceso = request.IdProceso,
                     IdProducto = request.IdProducto == null ? "" : request.IdProducto,
                     CodPais = request.CodPais == null ? "" : request.CodPais,
                     IdTipoUrba = request.IdTipoUrba == null ? "" : request.IdTipoUrba,
-			        ContratoId = request.ContratoId == null  ? "" : request.ContratoId,
-			        IdTipoInt  = request.IdTipoInt == null  ? "" : request.IdTipoInt,
+                    ContratoId = request.ContratoId == null ? "" : request.ContratoId,
+                    IdTipoInt = request.IdTipoInt == null ? "" : request.IdTipoInt,
                     IdCodVia = request.IdCodVia == null ? "" : request.IdCodVia,
                     CodUbi = request.CodUbi == null ? "" : request.CodUbi,
                     Ubigeo = request.Ubigeo == null ? "" : request.Ubigeo,
                     IdPoblado = request.IdPoblado == null ? "" : request.IdPoblado,
-                    TipTrabajo = request.TipTrabajo == null ?  "" : request.TipTrabajo,
+                    TipTrabajo = request.TipTrabajo == null ? "" : request.TipTrabajo,
                     FlagCE = request.FlagCE == null ? "" : request.FlagCE,
                     TipoServicio = request.TipoServicio == null ? "" : request.TipoServicio,
                     TipTra = request.TipTra == null ? "" : request.TipTra,
@@ -227,6 +227,7 @@ namespace Claro.SIACU.App.Transfer.Areas.Transfer.Controllers
 
             try
             {
+                Tools.Traces.Logging.Info(stridSession, oDatosAcicionalesDataRequest.Audit.Transaction, "Url: " + strUrl);
                 Tools.Traces.Logging.Info(stridSession, oDatosAcicionalesDataRequest.Audit.Transaction, "Request GetDatosAdicionales DP PostTransfer: " + JsonConvert.SerializeObject(oDatosAcicionalesDataRequest));
                 oDatosAcicionalesDataResponse = Utils.RestService.PostInvoque<Models.DatosAdicionales.DatosAdicionalesResponse>(strUrl, oDatosAcicionalesDataRequest.Audit, oDatosAcicionalesDataRequest, true);
                 Tools.Traces.Logging.Info(stridSession, oDatosAcicionalesDataRequest.Audit.Transaction, "Response GetDatosAdicionales DP PostTransfer: " + JsonConvert.SerializeObject(oDatosAcicionalesDataResponse));
@@ -242,10 +243,10 @@ namespace Claro.SIACU.App.Transfer.Areas.Transfer.Controllers
                 oDatosAcicionalesDataResponse = JsonConvert.DeserializeObject<Models.DatosAdicionales.DatosAdicionalesResponse>(result);
             }
 
-               return Json(new
-                {
-                 data = oDatosAcicionalesDataResponse,
-                }, JsonRequestBehavior.AllowGet);
+            return Json(new
+            {
+                data = oDatosAcicionalesDataResponse,
+            }, JsonRequestBehavior.AllowGet);
 
         }
 
@@ -300,6 +301,7 @@ namespace Claro.SIACU.App.Transfer.Areas.Transfer.Controllers
 
             try
             {
+                Tools.Traces.Logging.Info(stridSession, oDataRequest.Audit.Transaction, "Url: " + strUrl);
                 Tools.Traces.Logging.Info(stridSession, oDataRequest.Audit.Transaction, "Request GetDatosFranjaHorario DP PostTransfer: " + JsonConvert.SerializeObject(oDataRequest));
                 oDataResponse = Utils.RestService.PostInvoque<Models.FranjaHoraria.FranjaHorariaResponse>(strUrl, oDataRequest.Audit, oDataRequest, true);
                 Tools.Traces.Logging.Info(stridSession, oDataRequest.Audit.Transaction, "Response GetDatosFranjaHorario DP PostTransfer: " + JsonConvert.SerializeObject(oDataResponse));
@@ -330,11 +332,11 @@ namespace Claro.SIACU.App.Transfer.Areas.Transfer.Controllers
             codPoblados = codPoblado;
         }
 
-         [HttpPost]
-         public JsonResult GetEdificios()
-         {
+        [HttpPost]
+        public JsonResult GetEdificios()
+        {
             return Json(new { data = listEdificios });
-         }
+        }
 
         [HttpPost]
         public JsonResult GetPlanos(string tipoProducto)
@@ -386,21 +388,21 @@ namespace Claro.SIACU.App.Transfer.Areas.Transfer.Controllers
                                                         x.CodEstado == CodEstado &&
                                                         x.CodDistrito == CodDistriro).Select(x => x.codUbigeo).FirstOrDefault();
 
-             var   Ubigeo = listUbicaciones.Where(x =>
-                                                          x.CodProvincia == CodProvincia &&
-                                                          x.CodEstado == CodEstado &&
-                                                          x.CodDistrito == CodDistriro).Select(x => x.Ubigeo).FirstOrDefault();
+            var Ubigeo = listUbicaciones.Where(x =>
+                                                         x.CodProvincia == CodProvincia &&
+                                                         x.CodEstado == CodEstado &&
+                                                         x.CodDistrito == CodDistriro).Select(x => x.Ubigeo).FirstOrDefault();
 
-             this.GetDatosAdicionales(new DatosAdicionalesBodyRequest
-             {
-                 IdTransaccion = "3",
-                 IdProceso = "2",
-                 IdProducto = tipoProducto,
-                 CodPais = "51",
-                 CodUbi = codUbi,
-                 Ubigeo = Ubigeo,
+            this.GetDatosAdicionales(new DatosAdicionalesBodyRequest
+            {
+                IdTransaccion = "3",
+                IdProceso = "2",
+                IdProducto = tipoProducto,
+                CodPais = "51",
+                CodUbi = codUbi,
+                Ubigeo = Ubigeo,
                 Origen = "P"
-             });
+            });
 
             List<Utils.GenericItem> SelectList = new List<Utils.GenericItem>();
 
@@ -430,7 +432,7 @@ namespace Claro.SIACU.App.Transfer.Areas.Transfer.Controllers
 
                 foreach (var item in listTipoTrabajo)
                 {
-                      SelectListTipoTrabajo.Add(new Utils.GenericItem()
+                    SelectListTipoTrabajo.Add(new Utils.GenericItem()
                     {
 
                         Code = item.TipoTrabajo,
@@ -439,7 +441,7 @@ namespace Claro.SIACU.App.Transfer.Areas.Transfer.Controllers
                     });
                 }
 
-                   foreach (var item in listsubTipoTrabajo)
+                foreach (var item in listsubTipoTrabajo)
                 {
                     SelectListSubTipoTrabajo.Add(new Utils.GenericItem()
                     {
@@ -450,7 +452,7 @@ namespace Claro.SIACU.App.Transfer.Areas.Transfer.Controllers
                         Description = item.Descripcion,
                         Description2 = item.tiempoMin,
                         Type = item.IdSubTipoOrden,//PILOTO-Varillas
-                        IdMotive =item.CodTipoOrden//Validar
+                        IdMotive = item.CodTipoOrden//Validar
                     });
                 }
 
@@ -502,7 +504,7 @@ namespace Claro.SIACU.App.Transfer.Areas.Transfer.Controllers
 
             foreach (var item in oEntidad)
             {
-                 SelectList.Add(new Utils.GenericItem()
+                SelectList.Add(new Utils.GenericItem()
                 {
 
                     Code = item.CodVia,
@@ -535,7 +537,7 @@ namespace Claro.SIACU.App.Transfer.Areas.Transfer.Controllers
 
             return Json(new { data = SelectList.Distinct() });
         }
-       
+
         [HttpPost]
         public JsonResult GetInitialConfiguration(Models.InitialData.InitialDataBodyRequest oBodyRequest, string SessionID, string TransactionID)
         {
@@ -551,85 +553,87 @@ namespace Claro.SIACU.App.Transfer.Areas.Transfer.Controllers
 
             try
             {
-                  string strUrl = ConfigurationManager.AppSettings["DPGetCargaDatosClienteFija"];
-                  oInitialDataRequest.Audit = oAuditRequest;
-                  oInitialDataRequest.MessageRequest = new Models.InitialData.InitialDataMessageRequest
-                  {
-                      Header = new Models.DataPower.HeaderReq
-                      {
-                          HeaderRequest = new Models.DataPower.HeaderRequest
-                          {
-                              consumer = "SIACU",
-                              country = "PE",
-                              dispositivo = "MOVIL",
-                              language = "ES",
-                              modulo = "siacu",
-                              msgType = "Request",
-                              operation = "obtenerDatosInicial",
-                              pid = DateTime.Now.ToString("yyyyMMddHHmmssfff"),
-                              system = "SIACU",
-                              timestamp = DateTime.Now.ToString("o"),
-                              userId = Utils.Common.CurrentUser,
-                              wsIp = strIpSession
-                          }
-                      },
-                      Body = new Models.InitialData.InitialDataBodyRequest
-                      {
-                          ContractID = oBodyRequest.ContractID,
-                          CustomerID = oBodyRequest.CustomerID,
-                          UserAccount = oBodyRequest.UserAccount,
-                          codeRol = oBodyRequest.codeRol,
-                          codeCac = oBodyRequest.codeCac,
-                          state = oBodyRequest.state,
-                          Type = oBodyRequest.Type,
-                          flagConvivencia = ConfigurationManager.AppSettings["flagConvivenciaAsIsToBeReingFija"]
-                      }
-                  };
-                  Tools.Traces.Logging.Info(SessionID, oInitialDataRequest.Audit.Transaction, "Request: " + JsonConvert.SerializeObject(oInitialDataRequest));
-                  oInitialDataResponse = Utils.RestService.PostInvoque<Models.InitialData.InitialDataResponse>(strUrl, oInitialDataRequest.Audit, oInitialDataRequest, true);
-                  Tools.Traces.Logging.Info(SessionID, oInitialDataRequest.Audit.Transaction, "Response: " + JsonConvert.SerializeObject(oInitialDataResponse));
+                string strUrl = ConfigurationManager.AppSettings["DPGetCargaDatosClienteFija"];
+                oInitialDataRequest.Audit = oAuditRequest;
+                oInitialDataRequest.MessageRequest = new Models.InitialData.InitialDataMessageRequest
+                {
+                    Header = new Models.DataPower.HeaderReq
+                    {
+                        HeaderRequest = new Models.DataPower.HeaderRequest
+                        {
+                            consumer = "SIACU",
+                            country = "PE",
+                            dispositivo = "MOVIL",
+                            language = "ES",
+                            modulo = "siacu",
+                            msgType = "Request",
+                            operation = "obtenerDatosInicial",
+                            pid = DateTime.Now.ToString("yyyyMMddHHmmssfff"),
+                            system = "SIACU",
+                            timestamp = DateTime.Now.ToString("o"),
+                            userId = Utils.Common.CurrentUser,
+                            wsIp = strIpSession
+                        }
+                    },
+                    Body = new Models.InitialData.InitialDataBodyRequest
+                    {
+                        ContractID = oBodyRequest.ContractID,
+                        CustomerID = oBodyRequest.CustomerID,
+                        UserAccount = oBodyRequest.UserAccount,
+                        codeRol = oBodyRequest.codeRol,
+                        codeCac = oBodyRequest.codeCac,
+                        state = oBodyRequest.state,
+                        Type = oBodyRequest.Type,
+                        flagConvivencia = ConfigurationManager.AppSettings["flagConvivenciaAsIsToBeReingFija"]
+                    }
+                };
+                Tools.Traces.Logging.Info(SessionID, oInitialDataRequest.Audit.Transaction, "Url: " + strUrl);
+                Tools.Traces.Logging.Info(SessionID, oInitialDataRequest.Audit.Transaction, "Request: " + JsonConvert.SerializeObject(oInitialDataRequest));
+                oInitialDataResponse = Utils.RestService.PostInvoque<Models.InitialData.InitialDataResponse>(strUrl, oInitialDataRequest.Audit, oInitialDataRequest, true);
+                Tools.Traces.Logging.Info(SessionID, oInitialDataRequest.Audit.Transaction, "Response: " + JsonConvert.SerializeObject(oInitialDataResponse));
 
-                  var oPointAttention = new PuntoAtencionResponse();
-                  if (oInitialDataResponse.MessageResponse != null)
-                  {
-                          if (oInitialDataResponse.MessageResponse.Body != null)
-                      {
-                              oPointAttention = oInitialDataResponse.MessageResponse.Body.PuntoAtencion;
-                              if (oPointAttention != null)
-                          {
-                                  if (oPointAttention.CodigoRespuesta == "0")
-                              {
-                                      oInitialDataResponse.MessageResponse.Body.PuntoAtencion.listaRegistros = oPointAttention.listaRegistros.OrderBy(x => x.nombre).ToList();
-                              }
-                          }
-                      }
-                  }
-                  if (!string.IsNullOrEmpty(oInitialDataResponse.MessageResponse.Body.CoreServices.Technology)) {                   
-                     this.GetDatosAdicionales(new DatosAdicionalesBodyRequest
-                      {
-                          IdTransaccion = TransactionID,// "3",
-                          IdProceso = "1",
-                          IdProducto = oInitialDataResponse.MessageResponse.Body.CoreServices.Technology,
-                          CodPais = "51",
-                          IdTipoUrba = "0",
-                          ContratoId = oBodyRequest.ContractID,
-                          customerId = oBodyRequest.CustomerID,
-                          IdTipoInt = "TODOS",
-                          IdCodVia = "0",
-                          CodUbi = "",
-                          Ubigeo = "",
-                          IdPoblado = ""
-                      });
+                var oPointAttention = new PuntoAtencionResponse();
+                if (oInitialDataResponse.MessageResponse != null)
+                {
+                    if (oInitialDataResponse.MessageResponse.Body != null)
+                    {
+                        oPointAttention = oInitialDataResponse.MessageResponse.Body.PuntoAtencion;
+                        if (oPointAttention != null)
+                        {
+                            if (oPointAttention.CodigoRespuesta == "0")
+                            {
+                                oInitialDataResponse.MessageResponse.Body.PuntoAtencion.listaRegistros = oPointAttention.listaRegistros.OrderBy(x => x.nombre).ToList();
+                            }
+                        }
+                    }
+                }
+                if (!string.IsNullOrEmpty(oInitialDataResponse.MessageResponse.Body.CoreServices.Technology))
+                {
+                    this.GetDatosAdicionales(new DatosAdicionalesBodyRequest
+                    {
+                        IdTransaccion = TransactionID,// "3",
+                        IdProceso = "1",
+                        IdProducto = oInitialDataResponse.MessageResponse.Body.CoreServices.Technology,
+                        CodPais = "51",
+                        IdTipoUrba = "0",
+                        ContratoId = oBodyRequest.ContractID,
+                        customerId = oBodyRequest.CustomerID,
+                        IdTipoInt = "TODOS",
+                        IdCodVia = "0",
+                        CodUbi = "",
+                        Ubigeo = "",
+                        IdPoblado = ""
+                    });
 
-                      if (oInitialDataResponse.MessageResponse.Body.CoreServices.Technology != "9")
-                          oDatosAdi.MessageResponse.Body.servicios.tipificacionreglas_obtenerInformacionTipificacion.listaTipificacionRegla =
-                                   oDatosAdi.MessageResponse.Body.servicios.tipificacionreglas_obtenerInformacionTipificacion.listaTipificacionRegla.OrderBy(x => x.SubClaseCodigo).ToList();
+                    if (oInitialDataResponse.MessageResponse.Body.CoreServices.Technology != "9")
+                        oDatosAdi.MessageResponse.Body.servicios.tipificacionreglas_obtenerInformacionTipificacion.listaTipificacionRegla =
+                                 oDatosAdi.MessageResponse.Body.servicios.tipificacionreglas_obtenerInformacionTipificacion.listaTipificacionRegla.OrderBy(x => x.SubClaseCodigo).ToList();
 
-                     foreach (var item in oDatosAdi.MessageResponse.Body.servicios.configuracionesfija_obtenerConfiguraciones.ProductTransaction.ConfigurationAttributes.Where(x => x.AttributeType == "CONFIGURACIONES"))
-                     {
-                         oConfiguraciones[item.AttributeName + "_" + item.AttributeIdentifier] = item.AttributeValue;
-                     }
-                  } 
+                    foreach (var item in oDatosAdi.MessageResponse.Body.servicios.configuracionesfija_obtenerConfiguraciones.ProductTransaction.ConfigurationAttributes.Where(x => x.AttributeType == "CONFIGURACIONES"))
+                    {
+                        oConfiguraciones[item.AttributeName + "_" + item.AttributeIdentifier] = item.AttributeValue;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -675,12 +679,12 @@ namespace Claro.SIACU.App.Transfer.Areas.Transfer.Controllers
             Models.Transversal.GuardarDatosRequest oDataRequest = new Models.Transversal.GuardarDatosRequest();
             Models.Transversal.GuardarDatosResponse oDataResponse = new Models.Transversal.GuardarDatosResponse();
             Tools.Entity.AuditRequest oAuditRequest = Utils.Common.CreateAuditRequest<Tools.Entity.AuditRequest>(stridSession);
-            
+
             if (request.idFlujo == "TE")
             {
                 request.idFlujo = request.TransactionID == Tools.Utils.Constants.NumberThreeString ? ConfigurationManager.AppSettings["IdFlujoTrasladoExternoFTTH"] : ConfigurationManager.AppSettings["IdFlujoTrasladoExternoFTTHONE"];
             }
-            else 
+            else
             {
                 request.idFlujo = request.TransactionID == Tools.Utils.Constants.NumberThreeString ? ConfigurationManager.AppSettings["IdFlujoTrasladoInternoFTTH"] : ConfigurationManager.AppSettings["IdFlujoTrasladoInternoFTTHONE"];
             }
@@ -710,7 +714,7 @@ namespace Claro.SIACU.App.Transfer.Areas.Transfer.Controllers
                 Body = new Models.Transversal.GuardarDatosDataBodyRequest
                 {
                     idFlujo = request.idFlujo,
-                   Servicios = request.Servicios
+                    Servicios = request.Servicios
                 }
             };
 
@@ -751,6 +755,8 @@ namespace Claro.SIACU.App.Transfer.Areas.Transfer.Controllers
 
             try
             {
+                databytesFile = null;
+                Tools.Traces.Logging.Info(stridSession, oDataRequest.Audit.Transaction, "Url: " + strUrl);
                 Tools.Traces.Logging.Info(stridSession, oDataRequest.Audit.Transaction, "Request postGeneraTransaccion DP PostTransfer: " + JsonConvert.SerializeObject(oDataRequest));
                 oDataResponse = Utils.RestService.PostInvoque<Models.Transversal.GuardarDatosResponse>(strUrl, oDataRequest.Audit, oDataRequest, true);
                 Tools.Traces.Logging.Info(stridSession, oDataRequest.Audit.Transaction, "Response postGeneraTransaccion DP PostTransfer: " + JsonConvert.SerializeObject(oDataResponse));
@@ -764,18 +770,17 @@ namespace Claro.SIACU.App.Transfer.Areas.Transfer.Controllers
                 ***********************************************************/
                 try
                 {
-                 databytesFile = Convert.FromBase64String(oDataResponse.MessageResponse.Body.constancia);
-                oDataResponse.MessageResponse.Body.constancia = "";
+                    databytesFile = Convert.FromBase64String(oDataResponse.MessageResponse.Body.constancia);
                 }
                 catch (Exception ex)
                 {
-                    xsucces = true; 
+                    xsucces = true;
                     Tools.Traces.Logging.Error(stridSession, oDataRequest.Audit.Transaction, ex.Message);
                     string sep = " - ";
                     int posResponse = ex.Message.IndexOf(sep);
                     string result = ex.Message.Substring(posResponse + sep.Length);
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -832,6 +837,7 @@ namespace Claro.SIACU.App.Transfer.Areas.Transfer.Controllers
                     }
                 };
 
+                Tools.Traces.Logging.Info(stridSession, oDataRequest.Audit.Transaction, "Url: " + strUrl);
                 Tools.Traces.Logging.Info(stridSession, oDataRequest.Audit.Transaction, "Request GestionarCancelarTOA: " + JsonConvert.SerializeObject(oDataRequest));
                 oDataResponse = Utils.RestService.PostInvoque<CancelarTOAResponse>(strUrl, oDataRequest.Audit, oDataRequest, true);
                 Tools.Traces.Logging.Info(stridSession, oDataRequest.Audit.Transaction, "Response GestionarCancelarTOA: " + JsonConvert.SerializeObject(oDataResponse));
@@ -859,50 +865,51 @@ namespace Claro.SIACU.App.Transfer.Areas.Transfer.Controllers
             ReservaTOAResponse oDataResponse = new ReservaTOAResponse();
             Tools.Entity.AuditRequest oAuditRequest = Utils.Common.CreateAuditRequest<Tools.Entity.AuditRequest>(stridSession);
 
-           try
+            try
             {
 
-                    oDataRequest.Audit = oAuditRequest;
-                    oDataRequest.MessageRequest = new ReservaTOAMessageRequest
+                oDataRequest.Audit = oAuditRequest;
+                oDataRequest.MessageRequest = new ReservaTOAMessageRequest
+                {
+                    Header = new Models.DataPower.HeaderReq
                     {
-                        Header = new Models.DataPower.HeaderReq
+                        HeaderRequest = new Models.DataPower.HeaderRequest
                         {
-                            HeaderRequest = new Models.DataPower.HeaderRequest
-                            {
-                                consumer = "SIACU",
-                                country = "PE",
-                                dispositivo = "MOVIL",
-                                language = "ES",
-                                modulo = "siacu",
-                                msgType = "Request",
+                            consumer = "SIACU",
+                            country = "PE",
+                            dispositivo = "MOVIL",
+                            language = "ES",
+                            modulo = "siacu",
+                            msgType = "Request",
                             operation = "GestionarReservaTOA",
-                                pid = DateTime.Now.ToString("yyyyMMddHHmmssfff"),
-                                system = "SIACU",
-                                timestamp = DateTime.Now.ToString("o"),
-                                userId = Utils.Common.CurrentUser,
-                                wsIp = strIpSession
-                            }
-                        },
-                    Body = new ReservaTOABodyRequest
-                        {
-                            codSubTipoOrden = oBodyRequest.codSubTipoOrden == null ? "" : oBodyRequest.codSubTipoOrden,
-                            codZona = oBodyRequest.codZona == null ? "" : oBodyRequest.codZona,
-                        duracion = oBodyRequest.duracion == null ? "" : oBodyRequest.duracion,
-                            fechaReserva = oBodyRequest.fechaReserva == null ? "" : oBodyRequest.fechaReserva,
-                        flagValidaETA = oBodyRequest.flagValidaETA == null ? "" : oBodyRequest.flagValidaETA,
-                            franjaHoraria = oBodyRequest.franjaHoraria == null ? "" : oBodyRequest.franjaHoraria,
-                            idBucket = oBodyRequest.idBucket == null ? "" : oBodyRequest.idBucket,
-                        idConsulta = oBodyRequest.idConsulta == null ? "" : oBodyRequest.idConsulta,
-                            idPlano = oBodyRequest.idPlano == null ? "" : oBodyRequest.idPlano,
-                            nroOrden = oBodyRequest.nroOrden == null ? "" : oBodyRequest.nroOrden,
-                            tipoOrden = oBodyRequest.tipoOrden == null ? "" : oBodyRequest.tipoOrden,
-                            tipSrv = oBodyRequest.tipSrv == null ? "" : oBodyRequest.tipSrv,
-                            tiptra = oBodyRequest.tiptra == null ? "" : oBodyRequest.tiptra
+                            pid = DateTime.Now.ToString("yyyyMMddHHmmssfff"),
+                            system = "SIACU",
+                            timestamp = DateTime.Now.ToString("o"),
+                            userId = Utils.Common.CurrentUser,
+                            wsIp = strIpSession
                         }
-                    };
+                    },
+                    Body = new ReservaTOABodyRequest
+                    {
+                        codSubTipoOrden = oBodyRequest.codSubTipoOrden == null ? "" : oBodyRequest.codSubTipoOrden,
+                        codZona = oBodyRequest.codZona == null ? "" : oBodyRequest.codZona,
+                        duracion = oBodyRequest.duracion == null ? "" : oBodyRequest.duracion,
+                        fechaReserva = oBodyRequest.fechaReserva == null ? "" : oBodyRequest.fechaReserva,
+                        flagValidaETA = oBodyRequest.flagValidaETA == null ? "" : oBodyRequest.flagValidaETA,
+                        franjaHoraria = oBodyRequest.franjaHoraria == null ? "" : oBodyRequest.franjaHoraria,
+                        idBucket = oBodyRequest.idBucket == null ? "" : oBodyRequest.idBucket,
+                        idConsulta = oBodyRequest.idConsulta == null ? "" : oBodyRequest.idConsulta,
+                        idPlano = oBodyRequest.idPlano == null ? "" : oBodyRequest.idPlano,
+                        nroOrden = oBodyRequest.nroOrden == null ? "" : oBodyRequest.nroOrden,
+                        tipoOrden = oBodyRequest.tipoOrden == null ? "" : oBodyRequest.tipoOrden,
+                        tipSrv = oBodyRequest.tipSrv == null ? "" : oBodyRequest.tipSrv,
+                        tiptra = oBodyRequest.tiptra == null ? "" : oBodyRequest.tiptra
+                    }
+                };
 
+                Tools.Traces.Logging.Info(stridSession, oDataRequest.Audit.Transaction, "Url: " + strUrl);
                 Tools.Traces.Logging.Info(stridSession, oDataRequest.Audit.Transaction, "Request GestionarReservaTOA: " + JsonConvert.SerializeObject(oDataRequest));
-                    oDataResponse = Utils.RestService.PostInvoque<ReservaTOAResponse>(strUrl, oDataRequest.Audit, oDataRequest, true);
+                oDataResponse = Utils.RestService.PostInvoque<ReservaTOAResponse>(strUrl, oDataRequest.Audit, oDataRequest, true);
                 Tools.Traces.Logging.Info(stridSession, oDataRequest.Audit.Transaction, "Response GestionarReservaTOA: " + JsonConvert.SerializeObject(oDataResponse));
             }
             catch (Exception ex)

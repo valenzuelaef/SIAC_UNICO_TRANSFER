@@ -112,15 +112,14 @@
                 .then(function (res) {
                     debugger
                     var initialConfiguration = res[1].oInitialDataResponse.MessageResponse.Body;
-                    if (res[1].oDatosAdi.MessageResponse == null && initialConfiguration.CustomerInformation.CustomerList[0].ServiceStatus != 'Activo')
-                            {
-                            alert("La linea no se encuentra activa", 'Alerta', function () {
-                                $.unblockUI();
-                                parent.window.close();
-                            });
-        
-                            return false;
-                        }
+                    if (res[1].oDatosAdi.MessageResponse == null && initialConfiguration.CustomerInformation.CustomerList[0].ServiceStatus != 'Activo') {
+                        alert("La linea no se encuentra activa", 'Alerta', function () {
+                            $.unblockUI();
+                            parent.window.close();
+                        });
+
+                        return false;
+                    }
 
                     var AdditionalFixedData = res[1].oDatosAdi.MessageResponse.Body,
                         AuditRequest = res[1].oAuditRequest,
@@ -142,7 +141,7 @@
                     debugger;
                     that.TransferSession.Data = {};
                     that.TransferSession.Data.idTransactionFront = idTransactionFront;
-					that.TransferSession.Data.plataformaAT = plataformaAT;
+                    that.TransferSession.Data.plataformaAT = plataformaAT;
                     that.TransferSession.Data.CustomerInformation = (CustomerInformation.CodeResponse == '0') ? CustomerInformation.CustomerList[0] : [];
                     that.TransferSession.Data.CoreServices = (CoreServices.CodeResponse == '0') ? CoreServices.ServiceList : [];
                     that.TransferSession.Data.AdditionalServices = (AdditionalServices.CodeResponse == '0') ? AdditionalServices.AdditionalServiceList : [];
@@ -159,7 +158,7 @@
                     that.TransferSession.Data.AuditRequest = AuditRequest;
                     that.TransferSession.Data.Tipificacion_TI = (Tipificacion.CodigoRespuesta == '0') ? Tipificacion.listaTipificacionRegla[0] : [];
                     that.TransferSession.Data.Tipificacion_TE = (Tipificacion.CodigoRespuesta == '0') ? Tipificacion.listaTipificacionRegla[1] : [];
-                    
+
 
                     that.TransferSession.Data.ValidarTransaccion = (ValidarTransaccion != null ? (ValidarTransaccion.ResponseAudit != null ? ValidarTransaccion.ResponseData : []) : []);
 
@@ -2464,6 +2463,9 @@
             feed += string.format("<NODOPOSTVENTA>{0}</NODOPOSTVENTA>", 'Nodo ' + $("#spnNode").text());
             feed += string.format("<TELREFERENCIA>{0}</TELREFERENCIA>", (that.KeyTab == false) ? $('#txtReferencePhone_Internal').val() : $('#txtReferencePhone').val());
             feed += string.format("<PLATF_FACTURADOR>{0}</PLATF_FACTURADOR>", that.TransferSession.Configuration.Constants.Plataforma_Facturador);
+            feed += string.format("<TIPO_MANZANA>{0}</TIPO_MANZANA>", ($("#ddlTipMzBloEdi option:selected").text() == 'Seleccionar') ? '' : $("#ddlTipMzBloEdi option:selected").text());
+            feed += string.format("<DSC_INTERIOR>{0}</DSC_INTERIOR>", ($("#ddlDepartInter option:selected").text() == 'Seleccionar') ? '' : $("#ddlDepartInter option:selected").text() + ' ' + $('#txtNumberDepartInter').val());
+            feed += string.format("<DSC_ZONA>{0}</DSC_ZONA>", ($("#ddlNoteZote option:selected").text() == 'Seleccionar') ? '' : $("#ddlNoteZote option:selected").text() + ' ' + $('#txtNoteNameZote').val());
             debugger;
             return "<BODY>" + feed + "</BODY>";
 
@@ -3312,6 +3314,7 @@
                                 controls.divFooterInfoSot.show();
                                 controls.divFooterInfoSot.prepend('Nro. SOT: ' + nroSot + ' </p>');
                                 $("#divExternalTransfer button").attr('disabled', true);
+                                that.TransferSession.Data.Constancia = !$.string.isEmptyOrNull(response.data.MessageResponse.Body.constancia) ? true : false;
                             }
                         }
                         else {
@@ -3331,6 +3334,7 @@
         },
 
         Constancy_click: function () {
+            var that = this;
             var params = ['height=600',
                 'width=750',
                 'resizable=yes',
@@ -3338,7 +3342,11 @@
             ].join(',');
 
             var strIdSession = Session.UrlParams.IdSession;
-            window.open('/Transfer/Home/ShowRecordSharedFile' + "?&strIdSession=" + strIdSession, "_blank", params);
+            if (that.TransferSession.Data.Constancia)
+                window.open('/Transfer/Home/ShowRecordSharedFile' + "?&strIdSession=" + strIdSession, "_blank", params);
+            else
+                alert('Ocurrió un error al generar la constancia.');
+
         },
 
         validateControl: function (objeto) {
