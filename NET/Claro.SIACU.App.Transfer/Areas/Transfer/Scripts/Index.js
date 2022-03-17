@@ -2417,14 +2417,14 @@
             feed += string.format("<NUM_VIA>{0}</NUM_VIA>", (that.KeyTab) ? controls.txtNumber.val() : '');
             feed += string.format("<NOM_VIA>{0}</NOM_VIA>", (that.KeyTab) ? controls.txtNameStreet.val() : '')
             feed += string.format("<OBSERVACION>{0}</OBSERVACION>", (that.KeyTab) ?
-                                                                    ($.string.isEmptyOrNull($('#txtNote').val()) ? '' : $('#txtNote').val().replace(/\n/g, "\\n"))
-                                                                    : ($.string.isEmptyOrNull($('#txtNote_Internal').val()) ? '' : $('#txtNote_Internal').val().replace(/\n/g, "\\n")));
+                                                                    ($.string.isEmptyOrNull($('#txtNote').val()) ? '' : $('#txtNote').val().replace(/\t/g, " ").replace(/\n/g, "\\n").replace(/['"]+/g, ''))
+                                                                    : ($.string.isEmptyOrNull($('#txtNote_Internal').val()) ? '' : $('#txtNote_Internal').val().replace(/\t/g, " ").replace(/\n/g, "\\n").replace(/['"]+/g, '')));
             //if(Session.SessionParams.DATACUSTOMER.objPostDataAccount.plataformaAT === 'TOBE'){
             //	feed += string.format("<REFERENCIA>{0}</REFERENCIA>", (that.KeyTab) ? controls.txtNoteReference.val() : '');
             //}
             //else{
             feed += string.format("<REFERENCIA>{0}</REFERENCIA>", (that.KeyTab) ?
-                                                                (controls.ddlDepartInter.val() != '' ? String.format("{0} {1} {2}", $("#ddlDepartInter option:selected").text(), controls.txtNumberDepartInter.val(), controls.txtNoteReference.val()) : controls.txtNoteReference.val())
+                                                                (controls.ddlDepartInter.val() != '' ? String.format("{0} {1} {2}", $("#ddlDepartInter option:selected").text(), controls.txtNumberDepartInter.val(), controls.txtNoteReference.val().replace(/\t/g, " ").replace(/\n/g, "\\n").replace(/['"]+/g, '')) : controls.txtNoteReference.val().replace(/\t/g, " ").replace(/\n/g, "\\n").replace(/['"]+/g, ''))
                                                                 : '');
             //}
 
@@ -2587,7 +2587,7 @@
                         },
                         {
                             "parametro": "Notas",
-                            "valor": (that.KeyTab) ? ($.string.isEmptyOrNull($('#txtNote').val()) ? '-' : $('#txtNote').val().replace(/\t/g, " ").replace(/\n/g, "\\n")) : ($.string.isEmptyOrNull($('#txtNote_Internal').val()) ? '-' : $('#txtNote_Internal').val().replace(/\t/g, " ").replace(/\n/g, "\\n"))
+                            "valor": (that.KeyTab) ? ($.string.isEmptyOrNull($('#txtNote').val()) ? '-' : $('#txtNote').val().replace(/\t/g, " ").replace(/\n/g, "\\n").replace(/['"]+/g, '')) : ($.string.isEmptyOrNull($('#txtNote_Internal').val()) ? '-' : $('#txtNote_Internal').val().replace(/\t/g, " ").replace(/\n/g, "\\n").replace(/['"]+/g, ''))
                         },
                         {
                             "parametro": "flagCaso",
@@ -2724,7 +2724,7 @@
                         },
                         {
                             "parametro": "inter30",
-                            "valor": (that.KeyTab) ? ($.string.isEmptyOrNull($('#txtNote').val()) ? '-' : $('#txtNote').val().replace(/\t/g, " ").replace(/\n/g, "\\n")) : ($.string.isEmptyOrNull($('#txtNote_Internal').val()) ? '-' : $('#txtNote_Internal').val().replace(/\t/g, " ").replace(/\n/g, "\\n"))
+                            "valor": (that.KeyTab) ? ($.string.isEmptyOrNull($('#txtNote').val()) ? '-' : $('#txtNote').val().replace(/\t/g, " ").replace(/\n/g, "\\n").replace(/['"]+/g, '')) : ($.string.isEmptyOrNull($('#txtNote_Internal').val()) ? '-' : $('#txtNote_Internal').val().replace(/\t/g, " ").replace(/\n/g, "\\n").replace(/['"]+/g, ''))
                         },
                         {
                             "parametro": "P_PLUS_INTER2INTERACT",
@@ -2868,7 +2868,7 @@
                         },
                         {
                             "parametro": "P_REFERENCE_ADDRESS",
-                            "valor": controls.txtNoteReference.val()//that.GenerarNotasDireccion()
+                            "valor": controls.txtNoteReference.val().replace(/\t/g, " ").replace(/\n/g, "\\n").replace(/['"]+/g, '')//that.GenerarNotasDireccion()
                         },
                         {
                             "parametro": "P_TYPE_DOCUMENT",
@@ -3155,7 +3155,7 @@
                         },
                         {
                             "parametro": "inter30",
-                            "valor": (that.KeyTab) ? ($.string.isEmptyOrNull($('#txtNote').val()) ? '-' : $('#txtNote').val().replace(/\t/g, " ").replace(/\n/g, "\\n")) : ($.string.isEmptyOrNull($('#txtNote_Internal').val()) ? '-' : $('#txtNote_Internal').val().replace(/\t/g, " ").replace(/\n/g, "\\n"))
+                            "valor": (that.KeyTab) ? ($.string.isEmptyOrNull($('#txtNote').val()) ? '-' : $('#txtNote').val().replace(/\t/g, " ").replace(/\n/g, "\\n").replace(/['"]+/g, '')) : ($.string.isEmptyOrNull($('#txtNote_Internal').val()) ? '-' : $('#txtNote_Internal').val().replace(/\t/g, " ").replace(/\n/g, "\\n").replace(/['"]+/g, ''))
                         },
                         {
                             "parametro": "P_PLUS_INTER2INTERACT",
@@ -3346,7 +3346,7 @@
                 window.open('/Transfer/Home/ShowRecordSharedFile' + "?&strIdSession=" + strIdSession, "_blank", params);
             else
                 alert('Ocurrió un error al generar la constancia.');
-
+            
         },
 
         validateControl: function (objeto) {
